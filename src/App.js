@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-// import logo from './logo.svg';
+import logo from './logo.svg';
+import Home from './pages/home.js'
 // import { Button,Modal } from 'antd';
 import './App.css';
 // import { Routes, Route, Link } from "react-router-dom";
@@ -13,33 +14,37 @@ import {
 import { Layout, Menu } from 'antd';
 const { Header, Sider, Content } = Layout;
 
+
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const items = [
+    {
+      key: '1',
+      icon: <UserOutlined />,
+      label: '导航一',
+    },
+    {
+      key: '2',
+      icon: <VideoCameraOutlined />,
+      label: '导航二',
+    },
+    {
+      key: '3',
+      icon: <UploadOutlined />,
+      label: '导航三',
+    },
+  ]
   return (
     <Layout style={{height: '100%'}}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo" />
+        <div className="logo">
+          <img className="logo-icon" alt='' src={logo} />
+        </div>
         <Menu
           theme="dark"
           mode="inline"
           defaultSelectedKeys={['1']}
-          items={[
-            {
-              key: '1',
-              icon: <UserOutlined />,
-              label: 'nav 1',
-            },
-            {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'nav 2',
-            },
-            {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'nav 3',
-            },
-          ]}
+          items={items}
         />
       </Sider>
       <Layout className="site-layout">
@@ -62,7 +67,7 @@ const App = () => {
             minHeight: 280,
           }}
         >
-          Content  这里增加了一点文案
+         <Home/>
         </Content>
       </Layout>
     </Layout>
