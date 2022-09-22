@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
-import Home from './pages/home.js'
-// import { Button,Modal } from 'antd';
+import Home from './pages/home/home.js'
+import Echarts from './pages/echarts'
 import './App.css';
 // import { Routes, Route, Link } from "react-router-dom";
 import {
@@ -68,6 +68,7 @@ const App = () => {
           }}
         >
          <Home/>
+         <Echarts/>
         </Content>
       </Layout>
     </Layout>
