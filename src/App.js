@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
-import Home from './pages/home/home.js'
-import Echarts from './pages/echarts'
 import './App.css';
-// import { Routes, Route, Link } from "react-router-dom";
+import RoutesConfig from './routes/index'
+import { Link } from "react-router-dom";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -21,12 +20,12 @@ const App = () => {
     {
       key: '1',
       icon: <UserOutlined />,
-      label: '导航一',
+      label: <Link to="/home">主页</Link>,
     },
     {
       key: '2',
       icon: <VideoCameraOutlined />,
-      label: '导航二',
+      label: <Link to="/echarts">Echarts</Link>,
     },
     {
       key: '3',
@@ -35,7 +34,7 @@ const App = () => {
     },
   ]
   return (
-    <Layout style={{height: '100%'}}>
+    <Layout style={{ height: '100%' }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
           <img className="logo-icon" alt='' src={logo} />
@@ -67,13 +66,11 @@ const App = () => {
             minHeight: 280,
           }}
         >
-         <Home/>
-         <Echarts/>
+          <RoutesConfig/>
         </Content>
       </Layout>
     </Layout>
   );
 };
-
 
 export default App;
