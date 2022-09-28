@@ -11,7 +11,7 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
-const { Header, Sider, Content } = Layout;
+const { Header, Sider, Content, Footer } = Layout;
 
 
 const App = () => {
@@ -25,12 +25,12 @@ const App = () => {
     {
       key: '2',
       icon: <VideoCameraOutlined />,
-      label: <Link to="/echarts">Echarts</Link>,
+      label: <Link to="/echarts">地图</Link>,
     },
     {
       key: '3',
       icon: <UploadOutlined />,
-      label: '导航三',
+      label: <Link to="/fly">飞行图</Link>
     },
   ]
   return (
@@ -66,8 +66,10 @@ const App = () => {
             minHeight: 280,
           }}
         >
-          <RoutesConfig/>
+          <RoutesConfig />
         </Content>
+        <Footer>
+          <a target="_blank" rel="noopener noreferrer" href="https://beian.miit.gov.cn/">京ICP备19012558号-2</a></Footer>
       </Layout>
     </Layout>
   );

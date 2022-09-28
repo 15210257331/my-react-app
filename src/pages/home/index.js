@@ -1,66 +1,39 @@
-import React from 'react';
-import { Button, Descriptions, PageHeader,Card } from 'antd';
+import React, { useState } from 'react';
+import { Button, Image, Spin } from 'antd';
+import { getImages } from '../../api/request.js'
 
 const Home = () => {
-    return (
-        <>
-        <div className="site-page-header-ghost-wrapper">
-            <PageHeader
-                ghost={false}
-                onBack={() => window.history.back()}
-                title="Title"
-                subTitle="This is a subtitle"
-                extra={[
-                    <Button key="3">Operation</Button>,
-                    <Button key="2">Operation</Button>,
-                    <Button key="1" type="primary">
-                        Primary
-                    </Button>,
-                ]}
-            >
-                <Descriptions size="small" column={3}>
-                    <Descriptions.Item label="Created">Lili Qu</Descriptions.Item>
-                    <Descriptions.Item label="Association">
-                       asdf
-                    </Descriptions.Item>
-                    <Descriptions.Item label="Creation Time">2017-01-10</Descriptions.Item>
-                    <Descriptions.Item label="Effective Time">2017-10-10</Descriptions.Item>
-                    <Descriptions.Item label="Remarks">
-                        Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
-                    </Descriptions.Item>
-                </Descriptions>
-            </PageHeader>
-        </div>
-        <div style={{
-                display:'flex',
-                alignItems:"center",
-                justifyContent:"flex-start"
-        }}>
-        <Card
-          title="Default size card"
-          extra={<span href="#">More</span>}
-          style={{
-            width: 300,
-          }}
-        >
-          <p>Card content</p>
-          <p>Card content</p>
-          <p>Card content</p>
-        </Card>
-        <Card
-          title="Small size card"
-          style={{
-            width: 300,
-          }}
-        >
-          <p>Card content</p>
-          <p>Card content</p>
-          <p>Card content</p>
-        </Card>
-        </div>
-        
-      </>
-    )
+  const [loading, setLoading] = useState(false);
+  const [imgList, setImgList] = useState([]);
+  const queryImages = () => {
+    setLoading(true);
+    getImages().then(res => {
+      console.log(res);
+      setLoading(false);
+      setImgList(res.data)
+    })
+  }
+  const imgItem = imgList.map(item =>
+    <div key={item.id} style={{ margin: '10px', display: 'inline-block' }}>
+      <Image
+        width={200}
+        src={item.img}
+      />
+    </div>
+  )
+  return (
+    <>
+      <div style={{ float: 'right' }}>
+        <Button type="primary" onClick={() => queryImages()}>获取图片</Button>
+      </div>
+
+      <Spin spinning={loading}>
+        <Image.PreviewGroup>
+          {imgItem}
+        </Image.PreviewGroup>
+      </Spin>
+    </>
+  )
 }
 
 export default Home

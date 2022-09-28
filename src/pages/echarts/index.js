@@ -24,7 +24,7 @@ export default class Echarts extends Component {
                 min: 0,
                 max: 1000,
                 left: 26,
-                top: 40,
+                bottom: 40,
                 showLabel: !0,
                 text: ["高", "低"],
                 pieces: [{
@@ -46,10 +46,8 @@ export default class Echarts extends Component {
                     lt: 1,
                     label: "疑似",
                     color: "#ffd768"
-                }, {
-                    value: 0,
-                    color: "#ffffff"
-                }],
+                }
+                ],
                 show: !0
             },
             geo: {
@@ -59,8 +57,8 @@ export default class Echarts extends Component {
                     min: 1,
                     max: 2
                 },
-                zoom: 1.5,
-                top: 120,
+                zoom: 1.2,
+                // top: '10%',
                 label: {
                     show: true,
                     fontSize: "12",
@@ -229,8 +227,11 @@ export default class Echarts extends Component {
     }
     render() {
         return (
-            <div id="forms" style={{ width: '100%', height: '750px',padding: '10px'}}></div>
+            <div id="forms" style={{ width: '100%', height: '750px', padding: '10px' }}></div>
         )
+    }
+    componentWillUnmount() {
+        echarts.dispose(document.getElementById('forms'))
     }
 
 }
