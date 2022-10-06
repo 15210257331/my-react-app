@@ -68,7 +68,7 @@ const App = () => {
         >
           <RoutesConfig />
         </Content>
-        <Footer>
+        <Footer style={{textAlign: 'center'}}>
           <a target="_blank" rel="noopener noreferrer" href="https://beian.miit.gov.cn/">京ICP备19012558号-2</a></Footer>
       </Layout>
     </Layout>
